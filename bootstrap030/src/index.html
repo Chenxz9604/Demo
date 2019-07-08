@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>table模块快速使用</title>
+  <link rel="stylesheet" href="css/layui.css" media="all">
+  <script src="js/jquery-3.4.0.js"></script>
+
+  <!--<script>
+    function getCookie(cname){
+      var name = cname + "=";
+      var ca = document.cookie.split(';');
+      for(var i=0; i<ca.length; i++) {
+        var c = ca[i].trim();
+        if (c.indexOf(name)==0) { return c.substring(name.length,c.length); }
+      }
+      return "";
+    }
+    function checkCookie(){
+      var user = getCookie("username");
+      if (user!=""){
+        alert("欢迎 " + user);
+      }
+      else {
+        /*user = prompt("请输入你的名字:","");
+        if (user!="" && user!=null){
+          setCookie("username",user,30);
+        }*/
+        alert("请登录！");
+        window.location.href="/login.html";
+      }
+    }
+  </script>-->
+
+
+    <script>
+      function checkCookie() {
+        $.ajax({
+          url : "http://localhost:3000/api/getCookie",
+          method: "get",
+          success : function (json) {
+            console.log(json);
+            if (json.toString() == "fail"){
+              window.location.href="/login.html";
+              window.event.returnValue=false;
+            }
+          },
+          error: function(){
+            alert('index服务器发生错误！');
+            window.location.href="/login.html";
+            window.event.returnValue=false;
+          }
+          /*,
+            xhrFields: {
+               withCredentials: true
+            }*/
+        });
+      }
+    </script>
+
+</head>
+<body onload="checkCookie()">
+
+<table id="demo" lay-filter="/"></table>
+
+<script src="js/layui.js"></script>
+
+<script>
+  layui.use('table', function(){
+    var table = layui.table;
+
+    //第一个实例
+    table.render({
+      elem: '#demo'
+      ,height: 312
+      ,url: 'http://localhost:3000/api/users' //数据接口
+      ,page: true //开启分页
+      ,cols: [[ //表头
+        {field: 'id', title: 'ID', width:80, sort: true, fixed: 'left'}
+        ,{field: 'username', title: '用户名', width:80}
+        ,{field: 'sex', title: '性别', width:80, sort: true}
+        ,{field: 'city', title: '城市', width:80}
+      ]]
+    });
+
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "name": "springbootlj",
+  "version": "1.0.0",
+  "description": "前后端分离项目测试",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yiwuxia/springboot-mybatis-enum.git"
+  },
+  "keywords": [
+    "7403"
+  ],
+  "author": "lijin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yiwuxia/springboot-mybatis-enum/issues"
+  },
+  "homepage": "https://github.com/yiwuxia/springboot-mybatis-enum#readme",
+  "dependencies": {
+    "angular": "^1.7.8",
+    "express": "^4.16.4",
+    "http-proxy-middleware": "^0.19.1"
+  },
+  "devDependencies": {
+    "http-proxy": "^1.17.0"
+  }
+}

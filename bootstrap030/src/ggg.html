@@ -1,0 +1,99 @@
+<strong><script language="javascript" type="text/javascript" charset="utf-8">
+
+    function login(){
+        var code=escape($("#username").val());
+        var co = hex_md5($("#pwd").val());
+        if($("#username").val()==''){
+            alert('用户名格式不正确!');
+            return;
+        }
+        if($("#pwd").val()==''){
+            alert('密码不能为空!');
+            return;
+        }
+        $.ajax({
+            url : "http://localhost:3000/api/users", //将会转发此请求到10.10.21.65:8080/terminal/DataServlet
+
+            type : "POST",
+            dataType : "json",
+            data : {//post请求参数
+                func_id:20000,
+                pagesize:24,
+                pageindex:0,
+                username:$("#username").val(),
+                pwd:$("#pwd").val(),
+                co:co
+            },
+            success : function(data) {
+                //console.log(data);
+                alert("===success===");
+                if(data.success=="1"){
+                    logindo();
+                }else{
+                    if(data.err_code=="1"){
+                        alert("登录尝试次数过多，请您"+data.locked_mins+"分钟后重新登录");
+                    }else{
+                        alert("登录失败,请重新登陆!");
+                    }
+                }
+            },
+            error : function() {
+                alert("====error====");
+            }
+        });
+    }
+
+    function logindo(){
+        window.location = 'page.html';
+    }
+
+</script>
+    </head>
+
+    <body>
+    <!-- Top content -->
+    <div class="top-content">
+        <div class="inner-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8 col-sm-offset-2 text">
+                        <h1 style="font-family:'微软雅黑';"><strong><img src="images/zhongduan_logo.png" style="width:60px;"/>行为检测分析系统</strong></h1>
+                        <div class="description">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3 form-box">
+                        <div class="form-top">
+                            <div class="form-top-left">
+                                <h3>登录进入系统</h3>
+                                <p>请输入用户名和密码进行登录：</p>
+                            </div>
+                            <div class="form-top-right">
+                                <i class="fa fa-lock"></i>
+                            </div>
+                        </div>
+                        <div class="form-bottom">
+                            <table>
+                                <div class="form-group">
+                                    <label class="sr-only">用户名</label>
+                                    <input id="username" type="text" name="username" placeholder="用户名..." class="form-username form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" form="form-password">密 码</label>
+                                    <input id="pwd" type="password" name="form-password" placeholder="密码..." class="form-password form-control" onKeyPress="if (event.keyCode == 13) login();">
+                                </div>
+                                <button  class="btn" style="background-color:rgb(255, 185, 0);" onClick="login();">登 录</button>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    </body>
+    </html>
+</strong>

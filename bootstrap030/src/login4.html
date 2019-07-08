@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Signin Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <!-- Custom styles for this template -->
+    <link href="css/signin.css" rel="stylesheet">
+    <script src="js/jquery-3.4.0.js"></script>
+
+    <!--<script>
+        $(function () {
+            $.ajax({
+                url : "http://localhost:3000/api/setCookie",
+                method: "post",
+                success : function (json) {
+                    console.log(json);
+                },
+                xhrFields: {
+                    withCredentials: true
+                }
+            });
+        })
+    </script>-->
+
+    <script>
+
+        function setCookie(cname,cvalue,exdays){
+            var d = new Date();
+            d.setTime(d.getTime()+(exdays*24*60*60*1000));
+            var expires = "expires="+d.toGMTString();
+            document.cookie = cname+"="+cvalue+"; "+expires;
+        }
+    </script>
+
+    <!--<script>
+
+        $(document).ready(function(){
+            $("#login2").click(function () {
+                console.log("fdasdas");
+                //var loginSession = "1111";
+                //var user = document.getElementById("inputEmail");
+                //setCookie("username",user,30);         // 设置cookie
+                //setCookie();
+
+
+
+                $.ajax({
+
+                    url: 'http://localhost:3000/api/setCookie',
+                    type: 'get',
+                    async:true,
+                    /*xhrFields:{
+                        withCredentials:true
+                    },*/
+                    data: {
+                        username:userName,
+                        password:pwd
+                    },
+                    success: function(respon){
+                        console.log(respon);
+                        //var res=eval(respon);
+                        window.location.href="/index.html";
+                        window.event.returnValue=false;
+                    },
+                    error: function(){
+                        alert('服务器发生错误！');
+                    }
+                });
+
+
+                /*window.location.href="/index.html";//?test="+loginSession;
+                window.event.returnValue=false;*/
+            });
+        });
+    </script>-->
+    <script>
+        function login() {
+            console.log("loginMessage");
+            var userName = document.getElementById("inputEmail");
+            console.log(userName);
+            var pwd = document.getElementById("inputPassword");
+            console.log(pwd);
+            setCookie(userName,pwd,1);
+            /*$.ajax({
+                url: 'http://localhost:8080/api/setCookie',
+                type: 'get',
+                xhrFields:{
+                    withCredentials:true
+                },
+                async:true,
+
+                data: {
+                    username:userName,
+                    password:pwd
+                },
+                success: function(){
+                    //console.log(respon);
+                    //var res=eval(respon);
+                    window.location.href="/index.html";
+                    window.event.returnValue=false;
+                },
+                error: function(){
+                    alert('login服务器发生错误！');
+                }
+            })*/
+            window.location.href="/index.html";
+            window.event.returnValue=false;
+        }
+    </script>
+    <!--<script>
+        console.log("fdasdas");
+
+        $("#login2").click(function () {
+
+            /*var userName = document.getElementById("inputEmail");
+            console.log(userName);
+            var pwd = document.getElementById("inputPassword");
+            console.log(pwd);*/
+            /*$.ajax({
+
+                url: 'http://localhost:3000/api/setCookie',
+                type: 'get',
+                xhrFields:{
+                    withCredentials:true
+                },
+                async:true,
+
+                data: {
+                    username:userName,
+                    password:pwd
+                },
+                success: function(){
+                    //console.log(respon);
+                    //var res=eval(respon);
+                    window.location.href="/index.html";
+                    window.event.returnValue=false;
+                },
+                error: function(){
+                    alert('login服务器发生错误！');
+                }
+            });*/
+            //var loginSession = "1111";
+            //var user = document.getElementById("inputEmail");
+            //setCookie("username",user,30);         // 设置cookie
+            //setCookie();
+
+            window.location.href="/index.html";//?test="+loginSession;
+            window.event.returnValue=false;
+        });
+    </script>-->
+</head>
+
+<body>
+
+<div class="container">
+
+    <form class="form-signin">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="text" id="inputEmail" class="form-control" placeholder="Email address"  autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" >
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember you
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" id="login2" onclick="login()">登陆</button>
+
+    </form>
+
+</div> <!-- /container -->
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input type="text" name="username">
+    <input type="password" name="passwd">
+
+    <script>
+        $(function () {
+            $.ajax({
+                url : "http://localhost:8080/setCookie",
+                method: "get",
+                success : function (json) {
+                    console.log(json);
+                },
+                xhrFields: {
+                    withCredentials: true
+                }
+            });
+        })
+    </script>
+
+
+    <script>
+        $(function () {
+            $.ajax({
+                url : "http://localhost:8080/getCookie",
+                method: "get",
+                success : function (json) {
+                    console.log(json);
+                },
+                xhrFields: {
+                    withCredentials: true
+                }
+            });
+        })
+    </script>
+
+    <!--<script type="javascript">
+        $.ajax({
+            url: 'http://beta.roboming.com/api.php?s=/Public/AdminLogin.html',
+            type: 'POST',
+            async:true,
+            xhrFields:{
+                withCredentials:true
+            },
+            data: {
+                username:userName,
+                password:pwd
+            },
+            success: function(respon){
+                console.log(respon);
+                var res=eval(respon);
+            },
+            error: function(){
+                alert('服务器发生错误！');
+            }
+        });
+    </script>-->
+</body>
+</html>

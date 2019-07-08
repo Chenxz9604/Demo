@@ -1,0 +1,21 @@
+<!-- index.html -->
+<body>
+<button type="button" id="btn">点击获取代理服务器里的数据</button>
+<div id="div"></div>
+</body>
+<script>
+    let btn = document.getElementById( "btn" );
+    btn.onclick = function ( e ) {
+        let xhr = new XMLHttpRequest();
+        xhr.open( "POST", "http://127.0.0.1:1343" );
+        xhr.onreadystatechange = function () {
+            if( xhr.readyState === 4 ){
+                if( xhr.readyState === 200 ){
+                    let resData = xhr.response;
+                    console.log( resData );
+                }
+            }
+        }
+        xhr.send();
+    }
+</script>
